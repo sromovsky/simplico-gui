@@ -8,7 +8,7 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "lint": "ng lint",
-    "serve:ssr:simplico-gui": "node dist/simplico-gui/server/server.mjs",
+    "serve:ssr:simplico-gui": "node dist/simplico-gui/server/server.mjs"
   },
   "private": true,
   "dependencies": {
