@@ -1,11 +1,15 @@
-import { Component } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Component, inject, resource } from '@angular/core';
+import { HealthcheckService } from './services/healthcheck.service';
 
 @Component({
     selector: 'app-root',
-    imports: [RouterOutlet],
+    imports: [],
     templateUrl: './app.component.html',
 })
 export class AppComponent {
-    title = 'simplico-gui';
+    private healthcheckService = inject(HealthcheckService);
+
+    healthcheckResource = resource({
+        loader: () => this.healthcheckService.getHealthcheck(),
+    });
 }
