@@ -8,5 +8,6 @@ import { RouterLink } from '@angular/router';
     selector: 'app-toolbar',
     imports: [MatButton, MatIcon, MatToolbar, RouterLink],
     templateUrl: './toolbar.component.html',
+    styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent {}

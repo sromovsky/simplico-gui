@@ -1,0 +1,19 @@
+.footer-section {
+  height: 94px;
+  padding: 16px;
+  border-top: solid 1px var(--mat-sys-outline-variant);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .footer-logo {
+    font-size: 42px;
+    width: 42px;
+    height: 42px;
+  }
+
+  .footer-info {
+    font-size: 0.8rem;
+    text-align: end;
+  }
+}

@@ -1,17 +1,11 @@
-import { Component, inject, resource } from '@angular/core';
-import { HealthcheckService } from './services/healthcheck.service';
+import { Component } from '@angular/core';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 import { RouterOutlet } from '@angular/router';
+import { FooterComponent } from './components/footer/footer.component';
 
 @Component({
     selector: 'app-root',
-    imports: [ToolbarComponent, RouterOutlet],
+    imports: [ToolbarComponent, RouterOutlet, FooterComponent],
     templateUrl: './app.component.html',
 })
-export class AppComponent {
-    private healthcheckService = inject(HealthcheckService);
-
-    healthcheckResource = resource({
-        loader: () => this.healthcheckService.getHealthcheck(),
-    });
-}
+export class AppComponent {}
