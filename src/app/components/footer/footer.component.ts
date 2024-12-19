@@ -1,6 +1,6 @@
-import { Component, inject, resource } from '@angular/core';
-import { HealthcheckService } from '../../services/healthcheck.service';
+import { Component, computed, inject } from '@angular/core';
 import { MatIcon } from '@angular/material/icon';
+import { AppStore } from '../../app.store';
 
 @Component({
     selector: 'app-footer',
@@ -9,9 +9,7 @@ import { MatIcon } from '@angular/material/icon';
     styleUrl: './footer.component.scss',
 })
 export class FooterComponent {
-    private healthcheckService = inject(HealthcheckService);
+    private appStore = inject(AppStore);
 
-    healthcheckResource = resource({
-        loader: () => this.healthcheckService.getHealthcheck(),
-    });
+    healthcheckVersion = computed(() => this.appStore.healthcheck()?.version);
 }
