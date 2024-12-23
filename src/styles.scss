@@ -1,5 +1,8 @@
 @use '@angular/material' as mat;
 
+@import 'bootstrap/scss/bootstrap-utilities';
+@import 'bootstrap/scss/bootstrap-grid';
+
 html,
 body {
   height: 100%;
