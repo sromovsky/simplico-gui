@@ -3,8 +3,8 @@
         @if (loader()) {
             <mat-spinner></mat-spinner>
         } @else {
-            <form [formGroup]="formGroup">
-                <h2>Register</h2>
+            <form style="width: 400px" [formGroup]="formGroup">
+                <h2>Log In</h2>
                 <mat-form-field class="w-100">
                     <mat-label>Username</mat-label>
                     <input matInput formControlName="username" />
