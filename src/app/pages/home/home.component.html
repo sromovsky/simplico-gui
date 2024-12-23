@@ -9,10 +9,19 @@
         <h1>Simplico</h1>
         <h2>Take Control of Your Finances Easily</h2>
         <div class="header-start">
-            <button mat-flat-button routerLink="/login">Log In</button>
-            <button class="ms-2" mat-raised-button routerLink="/register">
-                Register
-            </button>
+            @if (user(); as user) {
+                Hello, {{ user.username }}!
+            } @else {
+                @defer {
+                    <button mat-flat-button routerLink="/login">Log In</button>
+                    <button
+                        class="ms-2"
+                        mat-raised-button
+                        routerLink="/register">
+                        Register
+                    </button>
+                }
+            }
         </div>
     </div>
 </header>

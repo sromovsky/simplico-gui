@@ -1,6 +1,15 @@
 <mat-toolbar>
-    <button mat-button routerLink="/">
-        <mat-icon>diamond</mat-icon>Simplico
-    </button>
-    {{ user()?.username }}
+    <div class="d-flex justify-content-between w-100">
+        <button mat-button routerLink="/">
+            <mat-icon>diamond</mat-icon>Simplico
+        </button>
+        <div>
+            <button mat-button [matMenuTriggerFor]="userMenu">
+                {{ user()?.username }}
+            </button>
+            <mat-menu #userMenu="matMenu">
+                <button mat-menu-item (click)="logout()">Log Out</button>
+            </mat-menu>
+        </div>
+    </div>
 </mat-toolbar>

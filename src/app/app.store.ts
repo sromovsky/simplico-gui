@@ -10,12 +10,15 @@ import { computed, inject, resource } from '@angular/core';
 import { HealthcheckService } from './services/healthcheck.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from './types/api/user.interface';
+import { DOCUMENT } from '@angular/common';
 
 export const AppStore = signalStore(
     { providedIn: 'root' },
-    withState(() => ({
-        token: '',
-    })),
+    withState(() => {
+        const localStorage = inject(DOCUMENT).defaultView?.localStorage;
+        const token = localStorage?.getItem('token') || '';
+        return { token };
+    }),
     withProps(() => ({
         _healthcheckService: inject(HealthcheckService),
     })),
@@ -38,8 +41,12 @@ export const AppStore = signalStore(
     withMethods((store) => ({
         setToken(token: string): void {
             localStorage.setItem('token', token);
-            console.log(localStorage.getItem('token'));
             patchState(store, () => ({ token }));
+        },
+    })),
+    withMethods((store) => ({
+        logout(): void {
+            store.setToken('');
         },
     })),
 );

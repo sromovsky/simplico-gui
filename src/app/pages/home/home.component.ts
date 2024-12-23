@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { NgOptimizedImage } from '@angular/common';
 import { MatButton } from '@angular/material/button';
 import { RouterLink } from '@angular/router';
+import { AppStore } from '../../app.store';
 
 @Component({
     selector: 'app-home',
@@ -9,4 +10,8 @@ import { RouterLink } from '@angular/router';
     templateUrl: './home.component.html',
     styleUrls: ['./home.component.scss'],
 })
-export default class HomeComponent {}
+export default class HomeComponent {
+    private appStore = inject(AppStore);
+
+    user = this.appStore.user;
+}
