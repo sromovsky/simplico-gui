@@ -1,7 +1,7 @@
 @use '@angular/material' as mat;
 
-@import 'bootstrap/scss/bootstrap-utilities';
-@import 'bootstrap/scss/bootstrap-grid';
+@use 'bootstrap/scss/bootstrap-utilities';
+@use 'bootstrap/scss/bootstrap-grid';
 
 html,
 body {
