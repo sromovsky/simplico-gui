@@ -34,14 +34,16 @@ export default class RegisterComponent {
     });
 
     submit() {
-        this.loader.set(true);
-        this.authService
-            .register({
-                username: this.formGroup.get('username')!.value!,
-                password: this.formGroup.get('password')!.value!,
-            })
-            .subscribe(() => {
-                this.router.navigate(['/login']).then();
-            });
+        if (this.formGroup.valid) {
+            this.loader.set(true);
+            this.authService
+                .register({
+                    username: this.formGroup.get('username')!.value!,
+                    password: this.formGroup.get('password')!.value!,
+                })
+                .subscribe(() => {
+                    this.router.navigate(['/login']).then();
+                });
+        }
     }
 }

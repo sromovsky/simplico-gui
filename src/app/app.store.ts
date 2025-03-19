@@ -38,6 +38,11 @@ export const AppStore = signalStore(
             return jwt.decodeToken(token) as User;
         }),
     })),
+    withComputed((store) => ({
+        loggedIn: computed(() => {
+            return !!store.user();
+        }),
+    })),
     withMethods((store) => ({
         setToken(token: string): void {
             localStorage.setItem('token', token);

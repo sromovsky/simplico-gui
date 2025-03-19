@@ -1,8 +1,15 @@
 <mat-toolbar>
     <div class="d-flex justify-content-between w-100">
-        <button mat-button routerLink="/">
-            <mat-icon>diamond</mat-icon>Simplico
-        </button>
+        <div class="d-flex">
+            <button mat-button routerLink="/">
+                <mat-icon>diamond</mat-icon>Simplico
+            </button>
+            @if (loggedIn()) {
+                <button mat-button routerLink="transactions">
+                    <mat-icon>payments</mat-icon>Transactions
+                </button>
+            }
+        </div>
         <div>
             <button mat-button [matMenuTriggerFor]="userMenu">
                 {{ user()?.username }}

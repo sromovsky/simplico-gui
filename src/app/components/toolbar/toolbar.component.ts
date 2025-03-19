@@ -3,8 +3,8 @@ import { MatButton } from '@angular/material/button';
 import { MatIcon } from '@angular/material/icon';
 import { MatToolbar } from '@angular/material/toolbar';
 import { Router, RouterLink } from '@angular/router';
-import { AppStore } from '../../app.store';
 import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
+import { UserFacade } from '../../facades/user.facade';
 
 @Component({
     selector: 'app-toolbar',
@@ -21,13 +21,14 @@ import { MatMenu, MatMenuItem, MatMenuTrigger } from '@angular/material/menu';
     styleUrls: ['./toolbar.component.scss'],
 })
 export class ToolbarComponent {
-    private appStore = inject(AppStore);
+    private userFacade = inject(UserFacade);
     private router = inject(Router);
 
-    user = this.appStore.user;
+    user = this.userFacade.user;
+    loggedIn = this.userFacade.loggedIn;
 
     logout() {
-        this.appStore.logout();
+        this.userFacade.logout();
         this.router.navigate(['/login']).then();
     }
 }
