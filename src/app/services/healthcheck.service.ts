@@ -1,13 +1,15 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Healthcheck } from '../types/api/healthcheck.interface';
 
 @Injectable({
     providedIn: 'root',
 })
 export class HealthcheckService {
-    async getHealthcheck(): Promise<Healthcheck> {
-        return fetch('/api/healthcheck').then(
-            (res) => res.json() as unknown as Healthcheck,
-        );
+    private http = inject(HttpClient);
+
+    getHealthcheck(): Observable<Healthcheck> {
+        return this.http.get<Healthcheck>('/api/healthcheck');
     }
 }

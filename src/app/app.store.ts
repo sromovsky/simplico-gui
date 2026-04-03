@@ -6,11 +6,11 @@ import {
     withProps,
     withState,
 } from '@ngrx/signals';
-import { computed, inject, resource } from '@angular/core';
+import { computed, inject, DOCUMENT } from '@angular/core';
+import { rxResource } from '@angular/core/rxjs-interop';
 import { HealthcheckService } from './services/healthcheck.service';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { User } from './types/api/user.interface';
-import { DOCUMENT } from '@angular/common';
 
 export const AppStore = signalStore(
     { providedIn: 'root' },
@@ -20,11 +20,12 @@ export const AppStore = signalStore(
         return { token };
     }),
     withProps(() => ({
+        _localStorage: inject(DOCUMENT).defaultView?.localStorage,
         _healthcheckService: inject(HealthcheckService),
     })),
     withProps((store) => ({
-        _healthcheckResource: resource({
-            loader: () => store._healthcheckService.getHealthcheck(),
+        _healthcheckResource: rxResource({
+            stream: () => store._healthcheckService.getHealthcheck(),
         }),
     })),
     withComputed((store) => ({
@@ -45,7 +46,7 @@ export const AppStore = signalStore(
     })),
     withMethods((store) => ({
         setToken(token: string): void {
-            localStorage.setItem('token', token);
+            store._localStorage?.setItem('token', token);
             patchState(store, () => ({ token }));
         },
     })),
